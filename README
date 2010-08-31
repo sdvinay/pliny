@@ -1,0 +1,28 @@
+These scripts provide a better interface to the team log statistics for
+Yahoo fantasy baseball leagues -- specifically the Super Lounge Weights
+League.
+
+As input, they consume the datafiles used by Yahoo's Stat Tracker, available
+at URLs like:
+http://baseball.fantasysports.yahoo.com/b1/stattracker_data?lid=441932&type=mlb
+(Swap in the appropriate league ID.  Note that this requires Yahoo
+ authentication cookies.)
+
+(It seems that at times lately the "teams" data is split into multiple lines.
+The scripts expect it all on one line.  I open stattracker_data.html in an 
+editor and manually join those lines back together.  Ugh.)
+
+
+parse_st_data.py creates a team log (in CSV) from the stattracker_data file.
+	As input, it relies on data/players.txt and data/stattracker_data.html
+
+format_st_data_[h,p].py each take as input the output from parse_st_data.py
+	and output hitting/pitching data in a human-readable format.
+
+
+Suggested usage:
+	# hitters, sorted by PA
+	./parse_st_data.py | ./format_st_data_h.py   | sort -n -k 1 -r
+	# pitchers, sorted by Pts/IP
+	./parse_st_data.py | ./format_st_data_p.py | sort -n -k 3 -r
+
