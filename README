@@ -21,8 +21,8 @@ format_st_data_[h,p].py each take as input the output from parse_st_data.py
 
 
 Suggested usage:
-	# hitters, sorted by PA
-	./parse_st_data.py | ./format_st_data_h.py   | sort -n -k 1 -r
-	# pitchers, sorted by Pts/IP
-	./parse_st_data.py | ./format_st_data_p.py | sort -n -k 3 -r
+	# hitters, sorted by pts/PA
+	./parse_st_data.py | ./format_st_data_h.py   | sort -n -k 6 -r
+	# pitchers, sorted by plus/minus
+	./parse_st_data.py | ./format_st_data_p.py | sort -n -k 4 -r
 
