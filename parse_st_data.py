@@ -19,6 +19,15 @@ for player_line in open('data/players.txt', 'r').readlines():
 		pnum = player_data[1]
 		player_name[pnum] = pname
 
+player_line = filter(lambda str: str.startswith("players^"), input)[0]
+player_list = player_line.split("^")[1:]
+for player_data_line in player_list:
+#print player_data_line
+	player_data = player_data_line.split("|")
+	pnum = player_data[0]
+	player_name[pnum] = player_data[1]
+#	print pnum, player_data[1]
+
 #print player_name
 
 # extract my roster from the "teams" section
@@ -43,6 +52,6 @@ for p in my_team_logs:
 	try:
 		pname = player_name[p[0]]
 	except KeyError:
-		pname = ""
+		pname = p[0]
 	print "%s,%s,%s,%s" % (p[0], pname, p[1], points(p[1]))
 
