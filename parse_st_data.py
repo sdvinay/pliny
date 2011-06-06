@@ -22,29 +22,23 @@ for player_line in open('data/players.txt', 'r').readlines():
 player_line = filter(lambda str: str.startswith("players^"), input)[0]
 player_list = player_line.split("^")[1:]
 for player_data_line in player_list:
-#print player_data_line
+	#print player_data_line
 	player_data = player_data_line.split("|")
 	pnum = player_data[0]
 	player_name[pnum] = player_data[1]
-#	print pnum, player_data[1]
-
-#print player_name
+	#print player_name
+	#	print pnum, player_data[1]
 
 # extract my roster from the "teams" section
 my_roster = filter(lambda str: str.startswith("teams^"), input)[0].split("|")[2].split(",")
 
-# put the player stats into a map
+# put the player stats into a map (pnum -> CSV string of stats)
 player_stats_raw = filter(lambda str: str.startswith("playerTotals^"), input)[0].split("^")[1].split("|")[1:]
 my_team_logs = zip (player_stats_raw[::2], player_stats_raw[1::2])
-# filter batters by AB, pitchers by IPouts.  Not perfect, but will work often enough
-my_batter_logs = filter(lambda p : int(p[1].split(",")[0]) > 0, my_team_logs)
-my_pitcher_logs = filter(lambda p : int(p[1].split(",")[9]) > 0, my_team_logs)
-
 
 def dot_product(a, b):
 	return sum(x*y for (x,y) in zip(a,b))
 	
-
 def points (player_log) :
 	return dot_product(point_multipliers, map(float, player_log.split(",")))
 
