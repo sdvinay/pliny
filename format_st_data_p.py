@@ -13,5 +13,6 @@ for line in csv.reader(sys.stdin.readlines()):
 		(ipout, hr, bb, k) = map(int, (line[11:15]))
 		pts = float(line[15])
 		ip = float(ipout)/3
-		print "%5.1f %5.1f %6.3f %20s " % (ip, pts, pts/ip, name)
+		plus_minus = k - bb - 4.5*hr
+		print "%5.1f %5.1f %6.3f %3d %20s " % (ip, pts, pts/ip, plus_minus, name)
 
