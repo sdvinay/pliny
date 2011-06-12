@@ -13,8 +13,8 @@ for line in csv.reader(sys.stdin.readlines()):
 		(ab, h, dbl, tpl, hr, sb, cs, bb) = map(float, (line[2:10]))
 		pts = float(line[15])
 		pa = ab+bb
-		ba = h/ab
-		obp = (h+bb)/pa
-		slg = (h+dbl+2*tpl+3*hr)/ab
+		ba = round(1000*h/ab)
+		obp = round(1000*(h+bb)/pa)
+		slg = round(1000*(h+dbl+2*tpl+3*hr)/ab)
 		ops = obp + slg
-		print "%4d %.3f %.3f %.3f %5.1f %6.3f %20s " % (int(pa), ba, obp, slg, pts, pts/pa, name)
+		print "%4d %03d/%03d/%03d %5.1f %6.3f %20s " % (int(pa), ba, obp, slg, pts, pts/pa, name)
