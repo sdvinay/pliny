@@ -4,7 +4,8 @@ League.
 
 As input, they consume the datafiles used by Yahoo's Stat Tracker, available
 at URLs like:
-http://baseball.fantasysports.yahoo.com/b1/stattracker_data?lid=441932&type=mlb
+http://baseball.fantasysports.yahoo.com/b1/stattracker_data?lid=18735&type=mlb
+http://aud13.sports.sp2.yahoo.com/mlb/players.txt
 (Swap in the appropriate league ID.  Note that this requires Yahoo
  authentication cookies.)
 
