@@ -5,29 +5,16 @@ import sys
 # AB, H, 2B, 3B, HR, SB, CS, BB, IP, IPouts, HR, BB, SO
 point_multipliers = [-.2,.6,.3,.5,.8,.2,-.4,.3,0,.14/3,-.62,-.14,.14]
 
+
+# read the player map
+player_name = dict()
+for player_line in open('data/playermap.txt', 'r').readlines():
+	(pnum, player_name[pnum]) = player_line.rstrip().split(",", 1)
+
+# open the stat data
 f = open('data/stattracker_data.html', 'r')
 input = f.readlines()
 
-
-# put the player names in a map
-player_name = dict()
-for player_line in open('data/players.txt', 'r').readlines():
-	if (player_line.startswith("m|")):
-#		print player_line
-		player_data = player_line.split("|")
-		pname = "\"%s %s\"" % (player_data[3], player_data[4])
-		pnum = player_data[1]
-		player_name[pnum] = pname
-
-player_line = filter(lambda str: str.startswith("players^"), input)[0]
-player_list = player_line.split("^")[1:]
-for player_data_line in player_list:
-	#print player_data_line
-	player_data = player_data_line.split("|")
-	pnum = player_data[0]
-	player_name[pnum] = player_data[1]
-	#print player_name
-	#	print pnum, player_data[1]
 
 # extract my roster from the "teams" section
 my_roster = filter(lambda str: str.startswith("teams^"), input)[0].split("|")[2].split(",")
