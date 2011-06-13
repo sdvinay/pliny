@@ -3,7 +3,8 @@ Yahoo fantasy baseball leagues -- specifically the Super Lounge Weights
 League, consuming the datafiles used by Yahoo's Stat Tracker.
 
 
-fetch_data.sh pulls the datafiles to disk
+fetch_data.sh pulls the datafiles to disk.  This requires Yahoo auth cookies;
+	see the script itself for cookie requirements.
 
 generate_playermap.py generates a mapping of player number to name
 
