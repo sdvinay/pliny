@@ -33,7 +33,7 @@ for dt in dates():
 		params = {'date': datestr, 'mid': team, 'week': 1}
 		r = requests.get(URL, params=params, headers=headers)
 		if r.status_code != 200:
-			print r.text
+			sys.stderr.write(r.text)
 			raise Exception("Error from Yahoo", r.status_code)
 		soup = bs4.BeautifulSoup(r.text)
 
