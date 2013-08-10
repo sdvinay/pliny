@@ -32,6 +32,9 @@ for dt in dates():
 		datestr = dt.isoformat()
 		params = {'date': datestr, 'mid': team, 'week': 1}
 		r = requests.get(URL, params=params, headers=headers)
+		if r.status_code != 200:
+			print r.text
+			raise Exception("Error from Yahoo", r.status_code)
 		soup = bs4.BeautifulSoup(r.text)
 
 		batting_team_totals = soup.find_all('div', 'ptstotal')[0].find_all('li')
