@@ -6,29 +6,32 @@ import requests
 import datetime
 
 URL = 'http://baseball.fantasysports.yahoo.com/b1/57874/team'
-cookie_value = open('cook2.txt').read()
+with open('cook2.txt') as f:
+	cookie_value = f.read()
 headers = {'Cookie' : cookie_value}
 
 STARTTEAM = int(sys.argv[1])
 NUMTEAMS = int(sys.argv[2])
-dt = datetime.date(2013,3,31)
+STARTDATE = datetime.date(2013,3,31)
 
 def convert_to_int(stri):
-	if(stri == '-'):
-		return 0
-	return int(stri)
+	return (int(stri) if (stri != '-') else 0)
 
 def convert_to_float(stri):
-	if(stri == '-'):
-		return 0
-	return float(stri)
+	return (float(stri) if (stri != '-') else 0)
 
-while dt < datetime.date.today():
+def dates():
+	dt = STARTDATE
+	while dt < datetime.date.today():
+		yield dt
+		dt += datetime.timedelta(1)
+
+for dt in dates():
 	for team in range(STARTTEAM,NUMTEAMS+STARTTEAM):
 
-		DATESTR = dt.isoformat()
-		payload = {'date': DATESTR, 'mid': team, 'week': 1}
-		r = requests.get(URL, params=payload, headers=headers)
+		datestr = dt.isoformat()
+		params = {'date': datestr, 'mid': team, 'week': 1}
+		r = requests.get(URL, params=params, headers=headers)
 		soup = bs4.BeautifulSoup(r.text)
 
 		batting_team_totals = soup.find_all('div', 'ptstotal')[0].find_all('li')
@@ -47,6 +50,5 @@ while dt < datetime.date.today():
 		BBA = convert_to_int(pitching_team_totals[2].text)
 		K   = convert_to_int(pitching_team_totals[3].text)
 
-		print DATESTR, team, AB, H, DB, TP, HR, SB, CS, BB, IP, HRA, BBA, K 
+		print datestr, team, AB, H, DB, TP, HR, SB, CS, BB, IP, HRA, BBA, K 
 
-	dt += datetime.timedelta(1)
