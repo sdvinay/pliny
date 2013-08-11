@@ -18,7 +18,7 @@ def convert_to_int(stri):
 	return (int(stri) if (stri != '-') else 0)
 
 def convert_to_float(stri):
-	return (float(stri) if (stri != '-') else 0)
+	return (float(stri) if (stri != '-') else 0.0)
 
 def dates():
 	dt = STARTDATE
