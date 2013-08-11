@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
 import sys
-import bs4
-import requests
+import bs4 # BeautifulSoup http://www.crummy.com/software/BeautifulSoup/
+import requests # http://docs.python-requests.org/en/latest/
 import datetime
 
 # constants/etc
@@ -33,7 +33,7 @@ def dates():
 # OK, here we go, looping on date, then team
 for dt in dates():
 	for team in range(STARTTEAM,NUMTEAMS+STARTTEAM):
-
+		# construct the HTTP request and then pull it into Soup
 		datestr = dt.isoformat()
 		params = {'date': datestr, 'mid': team, 'week': 1}
 		r = requests.get(URL, params=params, headers=headers)
@@ -42,8 +42,9 @@ for dt in dates():
 			raise Exception("Error from Yahoo", r.status_code)
 		soup = bs4.BeautifulSoup(r.text)
 
-		# this will get the two team totals lines; pull them aside 
-		#   to avoid running find_all/find twice
+		# The two team stats totals (batting and pitching) are in:
+		#    <div class="sum ptstotal">
+		# BeautifulSoup makes it easy to grab those into an array to pull from
 		totals_lines = soup.find_all('div', 'ptstotal')
 
 		batting_team_totals = totals_lines[0].find_all('li')
