@@ -37,7 +37,9 @@ for dt in dates():
 			raise Exception("Error from Yahoo", r.status_code)
 		soup = bs4.BeautifulSoup(r.text)
 
-		batting_team_totals = soup.find_all('div', 'ptstotal')[0].find_all('li')
+		totals_lines = soup.find_all('div', 'ptstotal')
+
+		batting_team_totals = totals_lines[0].find_all('li')
 		AB = convert_to_int(batting_team_totals[1].text)
 		H  = convert_to_int(batting_team_totals[2].text)
 		DB = convert_to_int(batting_team_totals[3].text)
@@ -47,7 +49,7 @@ for dt in dates():
 		CS = convert_to_int(batting_team_totals[7].text)
 		BB = convert_to_int(batting_team_totals[8].text)
 
-		pitching_team_totals = soup.find_all('div', 'ptstotal')[1].find_all('li')
+		pitching_team_totals = totals_lines[1].find_all('li')
 		IP  = convert_to_float(pitching_team_totals[0].text)
 		HRA = convert_to_int(pitching_team_totals[1].text)
 		BBA = convert_to_int(pitching_team_totals[2].text)
