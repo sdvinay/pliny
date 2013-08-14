@@ -6,7 +6,8 @@ import requests # http://docs.python-requests.org/en/latest/
 import datetime
 
 # constants/etc
-URL = 'http://baseball.fantasysports.yahoo.com/b1/57874/team'
+LEAGUE=58506 # weights two
+URL = 'http://baseball.fantasysports.yahoo.com/b1/' + str(LEAGUE) + '/team'
 with open('cook2.txt') as f:
 	cookie_value = f.read()
 headers = {'Cookie' : cookie_value}
