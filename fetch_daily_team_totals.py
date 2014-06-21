@@ -4,8 +4,10 @@ import sys
 import bs4 # BeautifulSoup http://www.crummy.com/software/BeautifulSoup/
 import requests # http://docs.python-requests.org/en/latest/
 import datetime
+import argparse
 
 # constants/etc
+DESCRIPTION='Fetch and parse daily team total stats.  Play with the start_team and num_teams parameters to divide-and-conquer with a few parallel instances.'
 #LEAGUE=28858 # weights two
 LEAGUE=41702 # super lounge weights 
 URL = 'http://baseball.fantasysports.yahoo.com/b1/' + str(LEAGUE) + '/team'
@@ -14,9 +16,14 @@ with open('cook2.txt') as f:
 headers = {'Cookie' : cookie_value, "Accept-Encoding": "gzip,deflate,sdch", "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}
 
 # configuration
-STARTTEAM = int(sys.argv[1])
-NUMTEAMS = int(sys.argv[2])
-STARTDATE = datetime.datetime.strptime(sys.argv[3], "%Y-%m-%d")
+parser = argparse.ArgumentParser(description=DESCRIPTION)
+parser.add_argument('start_team', type=int, help="Team number of first team")
+parser.add_argument('num_teams', type=int, help="Number of teams to fetch")
+parser.add_argument('start_date', help="Start Date, as YYYY-MM-DD")
+args = parser.parse_args()
+STARTTEAM = args.start_team
+NUMTEAMS = args.num_teams
+STARTDATE = datetime.datetime.strptime(args.start_date, "%Y-%m-%d")
 
 # funcs to convert the string formatted stats to numeric types
 def convert_to_int(stri):

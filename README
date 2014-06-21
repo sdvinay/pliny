@@ -4,9 +4,18 @@ League.
 
 
 fetch_daily_team_totals.py <startteam> <numteams> <startdate>
-	Fetches each team's daily stats page, to output
-	daily logs of each team's totals, for the purpose of creating daily
-	standings graphs.
+	usage: fetch_daily_team_totals.py [-h] start_team num_teams start_date
+
+	Fetch and parse daily team total stats. Play with the start_team and num_teams
+	parameters to divide-and-conquer with a few parallel instances.
+
+	positional arguments:
+	  start_team  Team number of first team
+	  num_teams   Number of teams to fetch
+	  start_date  Start Date, as YYYY-MM-DD
+
+	optional arguments:
+	  -h, --help  show this help message and exit
 
 Suggested usage:
 
