@@ -1,7 +1,20 @@
 These scripts provide a better interface to the team log statistics for
 Yahoo fantasy baseball leagues -- specifically the Super Lounge Weights
-League, consuming the datafiles used by Yahoo's Stat Tracker.
+League.
 
+
+fetch_daily_team_totals.py <startteam> <numteams> <startdate>
+	Fetches each team's daily stats page, to output
+	daily logs of each team's totals, for the purpose of creating daily
+	standings graphs.
+
+Suggested usage:
+
+	#fetch all the data for all teams in a 12-team league since opening day
+	./fetch_daily_team_totals 1 12 2014-03-26 > dailies.txt
+
+
+The following operate on stat_tracker data, and have not been maintained:
 
 fetch_data.sh pulls the datafiles to disk.  This requires Yahoo auth cookies;
 	see the script itself for cookie requirements.
