@@ -12,7 +12,7 @@ DESCRIPTION='Fetch and parse daily team total stats.  Play with the start_team a
 #LEAGUE=28858 # weights two
 LEAGUE=41702 # super lounge weights 
 URL = 'http://baseball.fantasysports.yahoo.com/b1/' + str(LEAGUE) + '/team'
-with open('cook2.txt') as f:
+with open('fixtures/private/yahoo_auth_cookie.txt') as f:
 	cookie_value = f.read()
 headers = {'Cookie' : cookie_value, "Accept-Encoding": "gzip,deflate,sdch", "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}
 OUTPUT_DELIMITER=' '
