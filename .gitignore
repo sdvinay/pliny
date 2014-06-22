@@ -3,3 +3,4 @@ data/
 .*.swp
 .swp
 yahoo_auth_cookies.txt
+*.pyc
