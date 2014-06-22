@@ -21,30 +21,3 @@ Suggested usage:
 
 	#fetch all the data for all teams in a 12-team league since opening day
 	./fetch_daily_team_totals 1 12 2014-03-26 > dailies.txt
-
-
-The following operate on stat_tracker data, and have not been maintained:
-
-fetch_data.sh pulls the datafiles to disk.  This requires Yahoo auth cookies;
-	see the script itself for cookie requirements.
-
-generate_playermap.py generates a mapping of player number to name
-
-parse_st_data.py creates a team log (in CSV) from the stattracker_data file.
-	As input, it relies on data/players.txt and data/stattracker_data.html
-
-format_st_data_[h,p].py each take as input the output from parse_st_data.py
-	and output hitting/pitching data in a human-readable format.
-
-
-Suggested usage:
-	# Get the data and generate the player map
-	./fetch_data.sh
-	./generate_playermap.py
-
-	# Now output some reports
-	# hitters, sorted by pts/PA
-	./parse_st_data.py | ./format_st_data_h.py   | sort -n -k 4 -r
-	# pitchers, sorted by plus/minus
-	./parse_st_data.py | ./format_st_data_p.py | sort -n -k 4 -r
-
