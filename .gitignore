@@ -4,3 +4,4 @@ data/
 .swp
 yahoo_auth_cookies.txt
 *.pyc
+fixtures/private
