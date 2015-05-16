@@ -1,6 +1,4 @@
-These scripts provide a better interface to the team log statistics for
-Yahoo fantasy baseball leagues -- specifically the Super Lounge Weights
-League.
+These scripts collect daily fantasy baseball team totals for the purpose of creating daily standings.
 
 
 fetch_daily_team_totals.py <startteam> <numteams> <startdate>
