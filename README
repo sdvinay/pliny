@@ -1,4 +1,4 @@
-These scripts collect daily fantasy baseball team totals for the purpose of creating daily standings.
+These scripts collect daily fantasy baseball team totals for the purpose of creating daily standings (such as via the spreadsheet at https://docs.google.com/spreadsheet/ccc?key=0AkKY7qZP9oXYdDBIM1VjUmFfR0VxZmRONlVzSktVQnc#gid=0).
 
 
 fetch_daily_team_totals.py <startteam> <numteams> <startdate>
@@ -14,6 +14,9 @@ fetch_daily_team_totals.py <startteam> <numteams> <startdate>
 
 	optional arguments:
 	  -h, --help  show this help message and exit
+
+	Note that this script expects yahoo login cookies in the file
+	  fixtures/private/yahoo_auth_cookie.txt
 
 Suggested usage:
 
